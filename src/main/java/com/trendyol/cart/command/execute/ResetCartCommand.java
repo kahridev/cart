@@ -4,7 +4,9 @@ import com.trendyol.cart.model.request.CommandPayload;
 import com.trendyol.cart.model.response.CommandResult;
 import com.trendyol.cart.store.CartStore;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Component;
 
+@Component
 @RequiredArgsConstructor
 public class ResetCartCommand implements Command {
     private final CartStore cartStore;

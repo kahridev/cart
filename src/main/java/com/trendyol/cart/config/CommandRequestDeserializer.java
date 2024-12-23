@@ -6,8 +6,8 @@ import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.trendyol.cart.model.request.AddItemPayload;
-import com.trendyol.cart.model.request.AddVasItemPayload;
+import com.trendyol.cart.model.request.AddItemToItemPayload;
+import com.trendyol.cart.model.request.AddVasItemToItemPayload;
 import com.trendyol.cart.model.request.CommandPayload;
 import com.trendyol.cart.model.request.CommandRequest;
 import com.trendyol.cart.model.request.RemoveItemPayload;
@@ -35,11 +35,15 @@ public class CommandRequestDeserializer extends JsonDeserializer<CommandRequest>
     private Class<? extends CommandPayload> determinePayloadType(String command) {
         switch (command) {
             case "addItem":
-                return AddItemPayload.class;
+                return AddItemToItemPayload.class;
             case "removeItem":
                 return RemoveItemPayload.class;
             case "addVasItemToItem":
-                return AddVasItemPayload.class;
+                return AddVasItemToItemPayload.class;
+            case "resetCart":
+                return null;
+            case "displayCart":
+                return null;
             default:
                 throw new IllegalArgumentException("Unsupported command: " + command);
         }
@@ -52,6 +56,6 @@ public class CommandRequestDeserializer extends JsonDeserializer<CommandRequest>
             return null;
         }
         Class<? extends CommandPayload> payloadType = determinePayloadType(command);
-        return objectMapper.treeToValue(payloadNode, payloadType);
+        return payloadType != null ? objectMapper.treeToValue(payloadNode, payloadType) : null;
     }
 }

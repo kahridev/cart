@@ -4,10 +4,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.when;
 
-import com.trendyol.cart.command.execute.AddVasItemCommand;
+import com.trendyol.cart.command.execute.AddVasItemToItemCommand;
 import com.trendyol.cart.model.entity.Cart;
 import com.trendyol.cart.model.entity.item.DefaultItem;
-import com.trendyol.cart.model.request.AddVasItemPayload;
+import com.trendyol.cart.model.request.AddVasItemToItemPayload;
 import com.trendyol.cart.model.response.CommandResult;
 import com.trendyol.cart.store.CartObserverManager;
 import com.trendyol.cart.store.CartStore;
@@ -18,17 +18,17 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
-public class AddVasItemCommandTest {
+public class AddVasItemToItemCommandTest {
 
     @Mock
     private CartStore cartStore;
 
     @InjectMocks
-    private AddVasItemCommand addVasItemCommand;
+    private AddVasItemToItemCommand addVasItemCommand;
 
     @Test
     void execute_shouldAddVasItemSuccessfully() {
-        var payload = new AddVasItemPayload();
+        var payload = new AddVasItemToItemPayload();
         payload.setItemId(1);
         payload.setPrice(500.0);
         payload.setQuantity(1);
@@ -51,7 +51,7 @@ public class AddVasItemCommandTest {
 
     @Test
     void execute_shouldThrowExceptionWhenItemNotFound() {
-        var payload = new AddVasItemPayload();
+        var payload = new AddVasItemToItemPayload();
         payload.setItemId(1);
         payload.setPrice(500.0);
         payload.setQuantity(1);
@@ -69,7 +69,7 @@ public class AddVasItemCommandTest {
 
     @Test
     void execute_shouldThrowExceptionWhenCategoryNotValid() {
-        var payload = new AddVasItemPayload();
+        var payload = new AddVasItemToItemPayload();
         payload.setItemId(1);
         payload.setPrice(500.0);
         payload.setQuantity(1);
@@ -85,7 +85,7 @@ public class AddVasItemCommandTest {
 
     @Test
     void execute_shouldThrowExceptionWhenVasSellerIdNotValid() {
-        var payload = new AddVasItemPayload();
+        var payload = new AddVasItemToItemPayload();
         payload.setItemId(1);
         payload.setPrice(500.0);
         payload.setQuantity(1);

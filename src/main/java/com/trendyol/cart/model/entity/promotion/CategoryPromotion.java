@@ -1,6 +1,7 @@
 package com.trendyol.cart.model.entity.promotion;
 
 import com.trendyol.cart.model.entity.Cart;
+import java.util.stream.Collectors;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -15,9 +16,14 @@ public class CategoryPromotion extends Promotion {
 
     @Override
     public double calculateDiscount(Cart cart) {
-        return cart.getItems().stream()
+        var itemsToDiscount = cart.getItems().stream()
                 .filter(item -> item.getCategoryId() == TARGET_CATEGORY_ID)
-                .mapToDouble(item -> item.getPrice() * item.getQuantity() * DISCOUNT_RATE)
-                .sum();
+                .collect(Collectors.toList());
+        if (itemsToDiscount.size() > 1) {
+            return itemsToDiscount.stream()
+                    .mapToDouble(item -> item.getPrice() * item.getQuantity() * DISCOUNT_RATE)
+                    .sum();
+        }
+        return 0.0;
     }
 }

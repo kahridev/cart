@@ -20,10 +20,11 @@ public class PromotionObserver implements CartObserver {
         var appliedPromotion = result.getLeft();
 
         cart.setTotalDiscount(discount);
-        cart.setAppliedPromotionId(appliedPromotion != null ? appliedPromotion.getPromotionId() : -1);
+        cart.setAppliedPromotionId(appliedPromotion != null ? appliedPromotion.getPromotionId() : null);
+        cart.setTotalAmount(cart.getTotalPrice() - cart.getTotalDiscount());
     }
 
-    private Pair<Promotion, Double> applyBestPromotion(Cart cart) {
+    public Pair<Promotion, Double> applyBestPromotion(Cart cart) {
         Promotion bestPromotion = null;
         double maxDiscount = 0.0;
 

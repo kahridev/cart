@@ -1,7 +1,7 @@
 package com.trendyol.cart.command.execute;
 
 import com.trendyol.cart.model.entity.item.VasItem;
-import com.trendyol.cart.model.request.AddVasItemPayload;
+import com.trendyol.cart.model.request.AddVasItemToItemPayload;
 import com.trendyol.cart.model.response.CommandResult;
 import com.trendyol.cart.store.CartStore;
 import lombok.RequiredArgsConstructor;
@@ -9,12 +9,12 @@ import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
-public class AddVasItemCommand implements Command<AddVasItemPayload> {
+public class AddVasItemToItemCommand implements Command<AddVasItemToItemPayload> {
 
     private final CartStore cartStore;
 
     @Override
-    public CommandResult execute(AddVasItemPayload payload) {
+    public CommandResult execute(AddVasItemToItemPayload payload) {
         payload.validate();
 
         var items = cartStore.getCart().getItems();

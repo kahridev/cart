@@ -1,6 +1,5 @@
 package com.trendyol.cart.command.execute;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.trendyol.cart.model.entity.Cart;
 import com.trendyol.cart.model.request.DisplayCartPayload;
@@ -18,11 +17,7 @@ public class DisplayCartCommand implements Command<DisplayCartPayload> {
 
     @Override
     public CommandResult execute(DisplayCartPayload payload) {
-        try {
-            Cart cart = cartStore.getCart();
-            return new CommandResult(true, objectMapper.writeValueAsString(cart));
-        } catch (JsonProcessingException e) {
-            throw new RuntimeException("Error converting cart to JSON", e);
-        }
+        Cart cart = cartStore.getCart();
+        return new CommandResult(true, cart);
     }
 }

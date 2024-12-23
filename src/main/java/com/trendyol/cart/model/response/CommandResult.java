@@ -13,5 +13,5 @@ import lombok.Setter;
 @AllArgsConstructor
 public class CommandResult {
     private boolean result;
-    private String message;
+    private Object message;
 }

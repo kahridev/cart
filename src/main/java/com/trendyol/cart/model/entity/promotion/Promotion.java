@@ -3,7 +3,7 @@ package com.trendyol.cart.model.entity.promotion;
 import com.trendyol.cart.model.entity.Cart;
 
 public abstract class Promotion {
-    private final int promotionId;
+    private final Integer promotionId;
 
     protected Promotion(int promotionId) {
         this.promotionId = promotionId;

@@ -20,6 +20,6 @@ public class SameSellerPromotion extends Promotion {
                 .map(Item::getSellerId)
                 .collect(Collectors.toSet());
 
-        return sellers.size() == 1 ? cart.getTotalPrice() * 0.10 : 0.0;
+        return cart.getItems().size() > 1 && sellers.size() == 1 ? cart.getTotalPrice() * 0.10 : 0.0;
     }
 }
