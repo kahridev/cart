@@ -1,0 +1,35 @@
+{
+    "testCaseName": "Test Case 2 - Add Items Exceeding 500k Limit",
+    "requests": [
+        {
+            "command": "addItem",
+            "payload": {
+                "itemId": 1,
+                "categoryId": 1001,
+                "sellerId": 2001,
+                "price": 250000.0,
+                "quantity": 1
+            }
+        },
+        {
+            "command": "addItem",
+            "payload": {
+                "itemId": 2,
+                "categoryId": 1002,
+                "sellerId": 2002,
+                "price": 250000.0,
+                "quantity": 1
+            }
+        },
+        {
+            "command": "addItem",
+            "payload": {
+                "itemId": 3,
+                "categoryId": 1003,
+                "sellerId": 2003,
+                "price": 2500.0,
+                "quantity": 1
+            }
+        }
+    ]
+}

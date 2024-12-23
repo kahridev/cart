@@ -1,88 +1,46 @@
-# Trendyol Checkout Case
 
-In this case, we expect you to develop a shopping cart application similar to the one used by everyone who uses e-commerce.
+# Cart Application
 
-You are not required to connect your application to a database, dockerize it, write a web service, or use a framework. However, there is no restriction related to this. An application that reads the given commands from a file, executes each command individually, and writes the result of each command to an output file will be sufficient. The important criteria here are clean code, SOLID principles, design patterns, object-oriented design, unit testing, and, based on your experience level, present your skills using Domain-Driven Design (DDD). While writing the case, it will be helpful to write in a testable and extendable manner, preferably using Test-Driven Development (TDD) practices.
+The Cart application is developed as part of the **Trendyol Developer Hiring** process. It is a simple **Spring Boot** application that implements the basic logic of a shopping cart. The application is designed to handle scenarios such as adding items to the cart, removing items, increasing quantities, and applying promotions. For more detailed information about the logic and implementation, please refer to the **[document](https://github.com/kahridev/cart/blob/main/README-2.md)**.
 
-**It will be beneficial not to start coding without reading the entire case.** Make sure that you read and understand the whole case before starting coding. Below are the key concepts and behaviors that explain the business:
+---
 
-## Cart
-It is an object that contains all other objects. All objects are applied to the Cart. A cart can contain a maximum of **10** unique items (excluding VasItems). The total number of products cannot exceed **30**. The total amount (**including vas items**) of the Cart cannot exceed **500,000** TL.  (totalAmount = totalPrice - totalDiscount)
+## **Swagger Usage**
 
-**totalPrice** = all the items' prices + all the vast items' prices
+Once the application is successfully running, you can access the Swagger interface to test API:  
+`http://localhost:8080/swagger-ui.html`
 
-## Item
-Items are the products found in the Cart. Items can be added to and removed from the Cart.  Items in the Cart can be reset.  Items can be of multiple types such as **VasItem**, **DefaultItem**, **DigitalItem**. Multiple instances of unique item can be added as quantity. The maximum quantity of an item that can be added is **10**. The price of each item is determined differently and provided as input to the application. Items in the Cart have seller and category IDs.
-## DigitalItem
-DigitalItem is an item that exist in the cart with the same type of items. Digital items include items such as steam cards, donation cards, etc. The maximum quantity of DigitalItem that can be added is **5**. Items with CategoryID **7889** are defined as DigitalItems. Another type of item cannot be defined with this CategoryID.
+### **Available Endpoint in Swagger**  
+- **POST /cart/execute**  
+  Use this endpoint to send the required `command` and `payload` to perform cart operations and view the `response` values. For details, please check the **[document](https://github.com/kahridev/cart/blob/main/README-2.md)**.
+---
 
-## DefaultItem
-Default items are the products commonly used in traditional e-commerce. For example, t-shirt, mobile phone, detergent, etc. The price of the VasItem added to the DefaultItem cannot be higher than the DefaultItem's price.
+## **Building and Running the Application with Docker**
 
-## VasItem
+You can easily build and run the application using **Docker** by following the steps below:
 
-VasItem represents value-added service items such as insurance, assembly, etc. **These items do not represent a physical product but a service related to a specific product and they do not have a meaning on their own.** Therefore, they can only be added as **sub-items** to default items in the Furniture (CategoryID: **1001**) and Electronics (CategoryID: **3004**) categories. A maximum of **3** VasItems (same VasItem or different) can be added to a DefaultItem. The CategoryID of VasItem is **3242**. The seller ID of VasItems is **5003**. VasItems cannot be defined with a seller ID other than **5003**. There is no other type of item with a seller ID of **5003**.
+### **1. Build the Docker Image**
+To build the Docker image, execute the following command:
+```bash
+docker build --pull --rm -f "Dockerfile" -t cart:latest "."
+```
+This command will use the existing Dockerfile to build the application and create an executable Docker image.
 
-## Promotion
-An entity that applies a discount to specific items or the entire Cart.
+### **2. Run the Application with Docker**
+After building the Docker image, you can run the application using the command below:
+```bash
+docker run -p 8080:8080 cart
+```
+This command will start the application on port 8080.
 
-## SameSellerPromotion
-The SameSellerPromotion ID is **9909**. If the seller of the items in the Cart is the same (excluding VasItems), SameSellerPromotion is applied to the Cart, and a **10%** discount is applied to the total amount of the Cart.
+---
 
-## CategoryPromotion
-The CategoryPromotion ID is **5676**. A promotion with a **5%** discount is applied to the **related items** in the Cart with CategoryID **3003**. It should be applied each of items and added up into the total amount of the cart
+## **Testing with Preloaded Test Data**
 
-## TotalPricePromotion
-The TotalPricePromotion ID is **1232**. If the price of the cart is more than **500** (including **500**) and less than **5,000 TL** (excluding **5,000**), a discount of **250 TL** is applied. If the price is between **5,000 TL** and **10,000 TL** (excluding **10,000**), a discount of **500 TL** is applied. If the price is between **10,000 TL** and **50,000 TL** (excluding **50,000**), a discount of **1,000 TL** is applied. If the price is **50,000 TL** or above, a discount of **2,000 TL** is applied.
+The application includes a set of preloaded test data to simplify testing. To test the application with the provided data, you can specify the JSON file path using the following parameter:
+```bash
+-DrequestFilePath=src/main/resources/requests/test-case-1.json
+```
+This parameter allows you to load and execute the commands from the specified JSON file.
 
-As also mentioned at the end of the cart section above, the price of the cart includes the vas items' prices
-
-**Multiple promotions are not applied to the Cart.** If a cart hits multiple promotions, the most advantageous promotion for the customer is applied (the most advantageous promotion is the one that provides the maximum discount to the customer, regardless of its type).
-
-# Commands
-Below are the commands that can be used in the input file that your application will receive from the command line and the outputs that it will write to the output file.
-
-**Input**
-```
-{"command":"addItem","payload":{"itemId":int,"categoryId":int,"sellerId":int,"price":double,"quantity":int}}
-```
-**Output:**
-```
-{"result":boolean, "message": string}
-```
-**Input**
-```
-{"command":"addVasItemToItem", "payload": {"itemId": int, "vasItemId":int, "vasCategoryId": int, "vasSellerId":int, "price":double, "quantity":int}}
-```
-**Output:**
-```
-{"result":boolean, "message": string}
-```
-**Input**
-
-Deletes item with it's quantity and VasItems'
-```
-{"command":"removeItem", "payload":{"itemId":int}}
-```
-**Output:**
-```
-{"result":boolean, "message": string}
-```
-**Input**
-```
-{"command":"resetCart"}
-```
-**Output:**
-```
-{"result":boolean, "message": string}
-```
-**Input**
-```
-{"command":"displayCart"}
-```
-**Output:**
-```
-{"result":boolean, "message":{"items":[ty.item], "totalAmount":double, "appliedPromotionId":int, "totalDiscount":double}}
-ty.item -> {"itemId": int, "categoryId": int, "sellerId":int, "price":double, "quantity":int, "vasItems":[ty.vasItem]}
-ty.vasItem -> {"vasItemId":int, "vasCategoryId": int, "vasSellerId":int, "price":double, "quantity":int}
-```
+Enjoy exploring the Cart Application!

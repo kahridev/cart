@@ -1,0 +1,59 @@
+{
+    "testCaseName": "Test Case 3 - Add VasItem More Than 3",
+    "requests": [
+        {
+            "command": "addItem",
+            "payload": {
+                "itemId": 1,
+                "categoryId": 1001,
+                "sellerId": 2001,
+                "price": 100.0,
+                "quantity": 1
+            }
+        },
+        {
+            "command": "addVasItemToItem",
+            "payload": {
+                "itemId": 1,
+                "vasItemId": 2,
+                "vasCategoryId": 3242,
+                "vasSellerId": 5003,
+                "price": 20.0,
+                "quantity": 1
+            }
+        },
+        {
+            "command": "addVasItemToItem",
+            "payload": {
+                "itemId": 1,
+                "vasItemId": 3,
+                "vasCategoryId": 3242,
+                "vasSellerId": 5003,
+                "price": 20.0,
+                "quantity": 1
+            }
+        },
+        {
+            "command": "addVasItemToItem",
+            "payload": {
+                "itemId": 1,
+                "vasItemId": 4,
+                "vasCategoryId": 3242,
+                "vasSellerId": 5003,
+                "price": 20.0,
+                "quantity": 1
+            }
+        },
+        {
+            "command": "addVasItemToItem",
+            "payload": {
+                "itemId": 1,
+                "vasItemId": 5,
+                "vasCategoryId": 3242,
+                "vasSellerId": 5003,
+                "price": 20.0,
+                "quantity": 1
+            }
+        }
+    ]
+}

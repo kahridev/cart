@@ -11,9 +11,9 @@
 	</parent>
 	<groupId>com.trendyol</groupId>
 	<artifactId>cart</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<name>cart</name>
-	<description>Demo project for Spring Boot</description>
+	<description>Demo cart application for Trendyol</description>
 	<url />
 	<licenses>
 		<license />
@@ -32,6 +32,7 @@
 		<apache-commons.version>3.17.0</apache-commons.version>
 		<palantir.java.format.version></palantir.java.format.version>
 		<spotless.version>2.43.0</spotless.version>
+        <springdoc.openapi-version>2.7.0</springdoc.openapi-version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -48,6 +49,11 @@
 			<artifactId>commons-lang3</artifactId>
 			<version>${apache-commons.version}</version>
 		</dependency>
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+            <version>${springdoc.openapi-version}</version>
+        </dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>

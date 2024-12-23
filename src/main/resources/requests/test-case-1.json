@@ -1,0 +1,115 @@
+{
+    "testCaseName": "Test Case 1 - Add More Than 10 Unique Items",
+    "requests": [
+        {
+            "command": "addItem",
+            "payload": {
+                "itemId": 1,
+                "categoryId": 1001,
+                "sellerId": 2001,
+                "price": 100.0,
+                "quantity": 1
+            }
+        },
+        {
+            "command": "addItem",
+            "payload": {
+                "itemId": 2,
+                "categoryId": 1002,
+                "sellerId": 2002,
+                "price": 200.0,
+                "quantity": 1
+            }
+        },
+        {
+            "command": "addItem",
+            "payload": {
+                "itemId": 3,
+                "categoryId": 1003,
+                "sellerId": 2003,
+                "price": 300.0,
+                "quantity": 1
+            }
+        },
+        {
+            "command": "addItem",
+            "payload": {
+                "itemId": 4,
+                "categoryId": 1004,
+                "sellerId": 2004,
+                "price": 400.0,
+                "quantity": 1
+            }
+        },
+        {
+            "command": "addItem",
+            "payload": {
+                "itemId": 5,
+                "categoryId": 1005,
+                "sellerId": 2005,
+                "price": 500.0,
+                "quantity": 1
+            }
+        },
+        {
+            "command": "addItem",
+            "payload": {
+                "itemId": 6,
+                "categoryId": 1006,
+                "sellerId": 2006,
+                "price": 600.0,
+                "quantity": 1
+            }
+        },
+        {
+            "command": "addItem",
+            "payload": {
+                "itemId": 7,
+                "categoryId": 1007,
+                "sellerId": 2007,
+                "price": 700.0,
+                "quantity": 1
+            }
+        },
+        {
+            "command": "addItem",
+            "payload": {
+                "itemId": 8,
+                "categoryId": 1008,
+                "sellerId": 2008,
+                "price": 800.0,
+                "quantity": 1
+            }
+        },
+        {
+            "command": "addItem",
+            "payload": {
+                "itemId": 9,
+                "categoryId": 1009,
+                "sellerId": 2009,
+                "price": 900.0,
+                "quantity": 1
+            }
+        },
+        {
+            "command": "addItem",
+            "payload": {
+                "itemId": 10,
+                "categoryId": 1010,
+                "sellerId": 2010,
+                "price": 1000.0,
+                "quantity": 1
+            }
+        },
+        {
+            "command": "addItem",
+            "payload": {
+                "itemId": 11,
+                "categoryId": 1011,
+                "sellerId": 2011,
+                "price": 1100.0,
+                "quantity": 1
+            }
+        }
+    ]
+}

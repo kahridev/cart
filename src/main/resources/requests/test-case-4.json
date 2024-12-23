@@ -1,0 +1,107 @@
+{
+    "testCaseName": "Test Case 3 - Add VasItem More Than 3",
+    "requests": [
+        {
+            "command": "addItem",
+            "payload": {
+                "itemId": 1,
+                "categoryId": 1001,
+                "sellerId": 2001,
+                "price": 100.0,
+                "quantity": 2
+            }
+        },
+        {
+            "command": "addItem",
+            "payload": {
+                "itemId": 3,
+                "categoryId": 3004,
+                "sellerId": 2002,
+                "price": 200.0,
+                "quantity": 1
+            }
+        },
+        {
+            "command": "addVasItemToItem",
+            "payload": {
+                "itemId": 1,
+                "vasItemId": 2,
+                "vasCategoryId": 3242,
+                "vasSellerId": 5003,
+                "price": 50.0,
+                "quantity": 1
+            }
+        },
+        {
+            "command": "addItem",
+            "payload": {
+                "itemId": 4,
+                "categoryId": 1001,
+                "sellerId": 2001,
+                "price": 100.0,
+                "quantity": 2
+            }
+        },
+        {
+            "command": "addItem",
+            "payload": {
+                "itemId": 5,
+                "categoryId": 3003,
+                "sellerId": 2002,
+                "price": 50.0,
+                "quantity": 1
+            }
+        },
+        {
+            "command": "addVasItemToItem",
+            "payload": {
+                "itemId": 4,
+                "vasItemId": 6,
+                "vasCategoryId": 3242,
+                "vasSellerId": 5003,
+                "price": 30.0,
+                "quantity": 1
+            }
+        },
+        {
+            "command": "addItem",
+            "payload": {
+                "itemId": 6,
+                "categoryId": 3004,
+                "sellerId": 2001,
+                "price": 200.0,
+                "quantity": 1
+            }
+        },
+        {
+            "command": "removeItem",
+            "payload": {
+                "itemId": 5
+            }
+        },
+        {
+            "command": "addItem",
+            "payload": {
+                "itemId": 7,
+                "categoryId": 7889,
+                "sellerId": 2003,
+                "price": 500.0,
+                "quantity": 5
+            }
+        },
+        {
+            "command": "resetCart",
+            "payload": {}
+        },
+        {
+            "command": "addItem",
+            "payload": {
+                "itemId": 7,
+                "categoryId": 7889,
+                "sellerId": 2003,
+                "price": 500.0,
+                "quantity": 5
+            }
+        }
+    ]
+}

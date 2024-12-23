@@ -24,10 +24,9 @@ public class CommandRunner {
     private final ObjectMapper objectMapper;
     private final RestTemplate restTemplate;
 
-    public void executeCommands(String filename, String outputFile) {
+    public void executeCommands(String filePath, String outputFile) {
         try {
-            List<CommandRequest> commandRequests =
-                    loadAllCommandRequestsFromDirectory("src/main/resources/requests", filename);
+            List<CommandRequest> commandRequests = loadAllCommandRequestsFromDirectory(filePath);
 
             try (BufferedWriter writer = new BufferedWriter(new FileWriter(outputFile))) {
                 for (CommandRequest request : commandRequests) {
@@ -51,9 +50,9 @@ public class CommandRunner {
         }
     }
 
-    private List<CommandRequest> loadAllCommandRequestsFromDirectory(String directoryPath, String fileName)
+    private List<CommandRequest> loadAllCommandRequestsFromDirectory(String directoryPath)
             throws IOException {
-        Path filePath = Paths.get(directoryPath, fileName);
+        Path filePath = Paths.get(directoryPath);
 
         try {
             String content = Files.readString(filePath);
